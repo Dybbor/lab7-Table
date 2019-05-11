@@ -22,7 +22,7 @@ bool TScanTable<TKey, TVal> ::Find(TKey key)
 			curr = i;
 			return true;
 		}
-		eff++;
+		Eff++;
 	}
 	curr = DataCount + 1;
 	return false;
@@ -30,7 +30,7 @@ bool TScanTable<TKey, TVal> ::Find(TKey key)
 template <class TKey,class TVal>
 bool TScanTable <TKey, TVal> ::Insert(TRecord <TKey, TVal> rec) 
 {
-	if (Find(rec) || ArrayTable::IsFull())
+	if (Find(rec.key) || IsFull())
 		return false;
 	else
 	{
