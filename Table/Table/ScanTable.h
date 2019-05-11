@@ -1,10 +1,12 @@
 #pragma once
 #include "ArrayTable.h"
 template <class TKey, class TVal>
-class TScanTable : public TTable <TKey,TVal>
+class TScanTable : public TArrayTable <TKey,TVal>
 {
 public:
-	TScanTable(int size) :TArrayTable <TKey, TVal>(size) {};
+	TScanTable(int size) : TArrayTable <TKey, TVal> (size) 
+	{
+	}
 	bool Find(TKey key);
 	bool Insert(TRecord  <TKey,TVal> rec);
 	bool Delete(TKey key);
@@ -28,7 +30,7 @@ bool TScanTable<TKey, TVal> ::Find(TKey key)
 template <class TKey,class TVal>
 bool TScanTable <TKey, TVal> ::Insert(TRecord <TKey, TVal> rec) 
 {
-	if (Find(rec) || IsFull())
+	if (Find(rec) || ArrayTable::IsFull())
 		return false;
 	else
 	{

@@ -15,7 +15,7 @@ public:
 	virtual bool IsEmpty() { return DataCount == 0; }
 	virtual void Reset() { curr = 0; }
 	virtual void GeNext() { curr++; }
-	virtual void IsEnd() { return curr == DataCount; }
+	virtual void IsEnd() { return curr == DataCount; };
 };
 
 template <class TKey, class TVal>
