@@ -1,5 +1,6 @@
 #pragma once
 #include "ArrayTable.h"
+#include <iomanip>
 template <class TKey, class TVal>
 class TScanTable : public TArrayTable <TKey,TVal>
 {
@@ -10,6 +11,8 @@ public:
 	bool Find(TKey key);
 	bool Insert(TRecord  <TKey,TVal> rec);
 	bool Delete(TKey key);
+	void InitScanTable();
+	void PrintTable();
 };
 
 template <class TKey,class TVal>
@@ -24,7 +27,7 @@ bool TScanTable<TKey, TVal> ::Find(TKey key)
 		}
 		Eff++;
 	}
-	curr = DataCount + 1;
+	curr = DataCount ;
 	return false;
 }
 template <class TKey,class TVal>
@@ -52,4 +55,36 @@ bool TScanTable <TKey, TVal>::Delete(TKey key)
 	}
 	else
 		return false;
+}
+template <class TKey,class TVal>
+void TScanTable<TKey, TVal>::InitScanTable()
+{
+	TRecord <int, int> rec[10];
+	bool table[10] = { false };
+	for (int i = 0; i < 10; i++)
+	{
+		while (table[rec[i].key = rand() % 10]);
+		table[rec[i].key] = true;
+		rec[i].val = rec[i].key * 10;
+		Insert(rec[i]);
+	}
+}
+	//Рандом без повторений
+	/*bool table[10] = { false };
+	for (int i = 0; i<10; ++i)
+	{
+
+		int n;
+		while (table[n = rand() % 10]);
+		table[n] = true;
+		cout << n << endl;
+	}*/
+
+template <class TKey,class TVal>
+void TScanTable <TKey, TVal>::PrintTable() 
+{
+	cout << "ScanTable" << endl;
+	cout <<setw(5)<< "Key" <<setw(15)<<"Val"<< endl;
+	for (int i = 0; i < DataCount; i++)
+		cout <<setw(5)<< arr[i].key << setw(15) << arr[i].val << endl;
 }

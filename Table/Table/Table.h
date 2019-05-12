@@ -21,6 +21,7 @@ public:
 	virtual void Reset() = 0;
 	virtual void GoNext() = 0;
 	virtual bool IsEnd() = 0;
+	virtual void PrintTable() = 0;
 };
 
 
