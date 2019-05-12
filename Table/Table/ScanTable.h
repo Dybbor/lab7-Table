@@ -1,13 +1,11 @@
 #pragma once
 #include "ArrayTable.h"
-#include <iomanip>
+
 template <class TKey, class TVal>
 class TScanTable : public TArrayTable <TKey,TVal>
 {
 public:
-	TScanTable(int size) : TArrayTable <TKey, TVal> (size) 
-	{
-	}
+	TScanTable(int size) : TArrayTable <TKey, TVal> (size) {}
 	bool Find(TKey key);
 	bool Insert(TRecord  <TKey,TVal> rec);
 	bool Delete(TKey key);

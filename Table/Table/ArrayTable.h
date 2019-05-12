@@ -1,6 +1,7 @@
 #pragma once
 #include "Record.h"
 #include "Table.h"
+#include <iomanip>
 template<class TKey, class TVal>
 class TArrayTable : public TTable <TKey,TVal>
 {
