@@ -16,6 +16,7 @@ public:
 	void Reset() { curr = 0; }
 	void GoNext() { curr++; }
 	bool IsEnd() { return curr == DataCount; };
+	void PrintTable();
 };
 
 template <class TKey, class TVal>
@@ -39,4 +40,12 @@ TArrayTable <TKey, TVal>::TArrayTable(const TArrayTable <TKey, TVal> &t)
 	DataCount = t.DataCount;
 	for (int i = 0; i < DataCount; i++)
 		arr[i] = t.arr[i];
+}
+template <class TKey, class TVal>
+void TArrayTable <TKey, TVal>::PrintTable()
+{
+	cout << "ScanTable" << endl;
+	cout << setw(5) << "Key" << setw(15) << "Val" << endl;
+	for (int i = 0; i < DataCount; i++)
+		cout << setw(5) << arr[i].key << setw(15) << arr[i].val << endl;
 }
