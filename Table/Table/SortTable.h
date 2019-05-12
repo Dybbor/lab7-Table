@@ -5,7 +5,7 @@ class TSortTable :public TArrayTable <TKey,TVal>
 {
 	public:
 		TSortTable(int size) : TArrayTable <TKey, TVal>(size){}
-		TSortTable(TScanTable <TKey, TVal> &t);
+		TSortTable(TScanTable <TKey, TVal> *t);
 		void QuickSort(TRecord <TKey, TVal> *arr,int DataCount);
 		bool Find(TKey key);
 		bool Insert(TRecord <TKey, TVal> rec);
@@ -13,9 +13,9 @@ class TSortTable :public TArrayTable <TKey,TVal>
 		void InitSortTable();
 };
 template <class TKey,class TVal>
-TSortTable <TKey,TVal>::TSortTable(TScanTable <TKey,TVal> &t) 
+TSortTable <TKey,TVal>::TSortTable(TScanTable <TKey,TVal> *t) 
 {
-	*this = t;
+	this = t;
 		//QuickSort();
 }
 
