@@ -19,7 +19,7 @@ void main()
 /*	TSortTable  <int,int> t1(11);
 	t1.InitSortTable();
 	t1.PrintTable();*/
-	TRecord <int, int> a, b;
+	/*TRecord <int, int> a, b;
 	a.key = 1;
 	a.val = 21;
 	b = a;
@@ -29,7 +29,11 @@ void main()
 	t.PrintTable();
 	t.QuickSort(0,t.DataCount-1);
 	cout << "after" << endl;
-	t.PrintTable();
+	t.PrintTable();*/
 	//TSortTable <int, int> t1(&t);
+	TScanTable <int, int> c(10);
+	c.InitScanTable();
+	TSortTable <int, int> a(c);
+	a.PrintTable();
 	system("pause");
 }

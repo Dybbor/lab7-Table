@@ -36,7 +36,7 @@ template <class TKey, class TVal>
 TArrayTable <TKey, TVal>::TArrayTable(const TArrayTable <TKey, TVal> &t)
 {
 	MaxSize = t.MaxSize;
-	arr = new TRecord[MaxSize];
+	arr = new TRecord<TKey,TVal>[MaxSize];
 	curr = t.curr;
 	DataCount = t.DataCount;
 	for (int i = 0; i < DataCount; i++)

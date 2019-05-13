@@ -6,7 +6,7 @@ class TSortTable :public TArrayTable <TKey,TVal>
 	public:
 		TSortTable(int size) : TArrayTable <TKey, TVal>(size){}
 		TSortTable(TScanTable <TKey, TVal> &t);
-		void QuickSort(TRecord <TKey, TVal> *arr,int DataCount);
+		void QuickSort(int left, int right);
 		bool Find(TKey key);
 		bool Insert(TRecord <TKey, TVal> rec);
 		bool Delete(TKey key);
@@ -19,9 +19,37 @@ TSortTable <TKey, TVal>::TSortTable(TScanTable <TKey, TVal> &t) :TArrayTable<TKe
 }
 
 template <class TKey,class TVal>
-void TSortTable <TKey, TVal> ::QuickSort(TRecord <TKey,TVal> *arr,int DataCount) 
+void TSortTable <TKey, TVal> ::QuickSort(int left, int right)
 {
-	
+	TRecord<TKey, TVal> pivot; // разрешающий элемент
+	int l_hold = left; //левая граница
+	int r_hold = right; // правая граница
+	pivot = arr[left];
+	while (left < right) // пока границы не сомкнутся
+	{
+		while ((arr[right] >= pivot) && (left < right))
+			right--; // сдвигаем правую границу пока элемент [right] больше [pivot]
+		if (left != right) // если границы не сомкнулись
+		{
+			arr[left] = arr[right]; // перемещаем элемент [right] на место разрешающего
+			left++; // сдвигаем левую границу вправо 
+		}
+		while ((arr[left] <= pivot) && (left < right))
+			left++; // сдвигаем левую границу пока элемент [left] меньше [pivot]
+		if (left != right) // если границы не сомкнулись
+		{
+			arr[right] = arr[left]; // перемещаем элемент [left] на место [right]
+			right--; // сдвигаем правую границу вправо 
+		}
+	}
+	arr[left] = pivot; // ставим разрешающий элемент на место
+	pivot.key = left;
+	left = l_hold;
+	right = r_hold;
+	if (left < pivot.key) // Рекурсивно вызываем сортировку для левой и правой части массива
+		QuickSort(left, pivot.key - 1);
+	if (right > pivot.key)
+		QuickSort(pivot.key + 1, right);
 }
 template <class TKey,class TVal>
 bool TSortTable <TKey, TVal>::Find(TKey key) 
