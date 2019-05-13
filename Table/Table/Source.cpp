@@ -34,6 +34,7 @@ void main()
 	TScanTable <int, int> c(10);
 	c.InitScanTable();
 	TSortTable <int, int> a(c);
+	a.QuickSort(0,9);
 	a.PrintTable();
 	system("pause");
 }

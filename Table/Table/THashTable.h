@@ -17,7 +17,7 @@ public:
 	bool IsEmpty() { return DataCount == 0 };
 	void Reset();
 	void GoNext();
-	void IsEnd() {return cutt==MaxSize};
+	void IsEnd() {return curr==MaxSize};
 };
 
 template <class TKey,class TVal>
