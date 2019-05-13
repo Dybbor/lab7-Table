@@ -23,9 +23,14 @@ public:
 template <class TKey, class TVal>
 TArrayTable<TKey, TVal>::TArrayTable(int _MaxSize)
 {
-	MaxSize = _MaxSize;
-	arr = new TRecord<TKey,TVal>[MaxSize];
-	curr = -1;
+	if (_MaxSize <= 0)
+		throw - 1;
+	else
+	{
+		MaxSize = _MaxSize;
+		arr = new TRecord<TKey, TVal>[MaxSize];
+		curr = -1;
+	}
 }
 template <class TKey, class TVal>
 TArrayTable <TKey, TVal> ::~TArrayTable() 
