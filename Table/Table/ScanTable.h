@@ -70,22 +70,20 @@ void TScanTable<TKey, TVal>::InitScanTable()
 template <class TKey,class TVal>
 void TScanTable  <TKey, TVal> ::QuickSort(int left,int right) 
 {
-	int pivot; // разрешающий элемент
-	TVal piv;
+	TRecord<TKey,TVal> pivot; // разрешающий элемент
 	int l_hold = left; //левая граница
 	int r_hold = right; // правая граница
-	pivot = arr[left].key;
-	piv = arr[left].val;
+	pivot = arr[left];
 	while (left < right) // пока границы не сомкнутся
 	{
-		while ((arr[right].key >= pivot) && (left < right))
+		while ((arr[right]>= pivot) && (left < right))
 			right--; // сдвигаем правую границу пока элемент [right] больше [pivot]
 		if (left != right) // если границы не сомкнулись
 		{
 			arr[left] = arr[right]; // перемещаем элемент [right] на место разрешающего
 			left++; // сдвигаем левую границу вправо 
 		}
-		while ((arr[left].key <= pivot) && (left < right))
+		while ((arr[left] <= pivot) && (left < right))
 			left++; // сдвигаем левую границу пока элемент [left] меньше [pivot]
 		if (left != right) // если границы не сомкнулись
 		{
@@ -93,15 +91,14 @@ void TScanTable  <TKey, TVal> ::QuickSort(int left,int right)
 			right--; // сдвигаем правую границу вправо 
 		}
 	}
-	arr[left].key = pivot; // ставим разрешающий элемент на место
-	arr[left].val = piv;
-	pivot = left;
+	arr[left]= pivot; // ставим разрешающий элемент на место
+		pivot.key = left;
 	left = l_hold;
 	right = r_hold;
-	if (left < pivot) // Рекурсивно вызываем сортировку для левой и правой части массива
-		QuickSort( left, pivot - 1);
-	if (right > pivot)
-		QuickSort( pivot + 1, right);
+	if (left < pivot.key) // Рекурсивно вызываем сортировку для левой и правой части массива
+		QuickSort( left, pivot.key - 1);
+	if (right > pivot.key)
+		QuickSort( pivot.key + 1, right);
 }
 	//Рандом без повторений
 	/*bool table[10] = { false };
