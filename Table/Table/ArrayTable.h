@@ -50,7 +50,7 @@ TArrayTable <TKey, TVal>::TArrayTable(const TArrayTable <TKey, TVal> &t)
 template <class TKey, class TVal>
 void TArrayTable <TKey, TVal>::PrintTable()
 {
-	cout << "ScanTable" << endl;
+	cout << "Table" << endl;
 	cout << setw(5) << "Key" << setw(15) << "Val" << endl;
 	for (int i = 0; i < DataCount; i++)
 		cout << setw(5) << arr[i].key << setw(15) << arr[i].val << endl;

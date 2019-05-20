@@ -31,10 +31,12 @@ void main()
 	cout << "after" << endl;
 	t.PrintTable();*/
 	//TSortTable <int, int> t1(&t);
-	TScanTable <int, int> c(10);
+	/*TScanTable <int, int> c(10);
 	c.InitScanTable();
 	TSortTable <int, int> a(c);
 	a.QuickSort(0,9);
-	a.PrintTable();
+	a.PrintTable();*/
+
+
 	system("pause");
 }
