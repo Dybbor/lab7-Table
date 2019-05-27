@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ScanTable.h"
 #include "SortTable.h"
+#include "THashTable.h"
 using namespace std; 
 void main() 
 {
@@ -16,7 +17,7 @@ void main()
 	cout << "Delete  " << t.Delete(2) << endl;
 	t.PrintTable();*/
 
-/*	TSortTable  <int,int> t1(11);
+	/*TSortTable  <int,int> t1(11);
 	t1.InitSortTable();
 	t1.PrintTable();*/
 	/*TRecord <int, int> a, b;
@@ -36,7 +37,9 @@ void main()
 	TSortTable <int, int> a(c);
 	a.QuickSort(0,9);
 	a.PrintTable();*/
-
+	THashTable <int, int> t(100);
+	t.InitHashTable();
+	t.PrintTable();
 
 	system("pause");
 }

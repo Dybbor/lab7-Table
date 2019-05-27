@@ -1,24 +1,24 @@
 #pragma once
 #include "Table.h"
 template <class TKey,class TVal>
-class THashTable :public TTable <TKey, Tval>
+class THashTable :public TTable <TKey, TVal>
 {
 protected:
 	int MaxSize;
-	TRecord *arr;
+	TRecord <TKey,TVal> *arr;
 	int curr;
 	int step;
-	int HashFunc(TKey key, TVal val) { return key % MaxSize };
-	int NextPos(int pos) { pos = (pos + step) % MaxSize };
+	int HashFunc(TKey key /*TVal val*/) { return key % MaxSize; };
+	int NextPos(int pos) {return pos = (pos + step) % MaxSize; };
 public:
 	THashTable(int _MaxSize, int _Step = 11);
 	THashTable(const THashTable &t);
-	~THashTable() { delete[] arr };
-	bool IsFull() { return DataCount == MaxSize };
-	bool IsEmpty() { return DataCount == 0 };
+	~THashTable() { delete[] arr; };
+	bool IsFull() { return DataCount == MaxSize; };
+	bool IsEmpty() { return DataCount == 0; };
 	void Reset();
 	void GoNext();
-	void IsEnd() {return curr==MaxSize};
+	bool IsEnd() { return curr == MaxSize; };
 	bool Find(TKey key);
 	bool Insert(TRecord <TKey, TVal> rec);
 	bool Delete(TKey key);
@@ -31,7 +31,7 @@ THashTable <TKey, TVal>::THashTable(int _MaxSize,int _Step)
 {
 	MaxSize = _MaxSize;
 	step = _Step;
-	arr = new TRecord[MaxSize];
+	arr = new TRecord <TKey,TVal>[MaxSize];
 	for (int i = 0; i < MaxSize; i++)
 		arr[i].key = 0;
 }
@@ -52,7 +52,7 @@ void THashTable<TKey, TVal> ::Reset()
 {
 	curr = 0;
 	if (DataCount > 0)
-		while (arr[curr].key == 0 || arr[i].key == -1 || curr<MaxSize)
+		while ((arr[curr].key == 0 || arr[curr].key == -1) && curr<MaxSize)
 			curr++;
 }
 
@@ -60,7 +60,7 @@ template <class TKey, class TVal>
 void THashTable<TKey, TVal> ::GoNext() 
 {
 	curr++;
-	while (curr < MaxSize && (arr[curr].key == 0 || arr[i].key == -1)
+	while (curr < MaxSize && (arr[curr].key == 0 || arr[curr].key == -1))
 		curr++;
 }
 template <class TKey, class TVal>
@@ -118,19 +118,19 @@ bool THashTable <TKey, TVal> ::Delete(TKey key)
 template <class TKey, class TVal>
 void THashTable<TKey, TVal>::InitHashTable()
 {
-	TRecord <int, int> rec[100];
-	bool table[100] = { false };
-	for (int i = 0; i < 100;i++ )
+	TRecord  <int, int> rec;
+	for (int i = 0; i < 50; i++)
 	{
-		while (table[rec[i].key = rand() % 10]);
-		table[rec[i].key] = true;
-		rec[i].val = rec[i].key * 10;
-		Insert(rec[i]);
-		i += 7;
+		rec.key = rand() % 100;
+		rec.val = rec.key ;
+		Insert(rec);
 	}
 }
-template <class TKey,class TVal>
-void THashTable < TKey, TVal> ::InitHashTable() 
-{
 
+template <class TKey,class TVal>
+void THashTable <TKey, TVal> ::PrintTable() 
+{
+	cout << setw(5) << "Key" << setw(15) << "Val" << endl;
+	for (Reset();!IsEnd(); GoNext())
+		cout << setw(5) << arr[curr].key << setw(15) << arr[curr].val << endl;
 }
