@@ -17,9 +17,14 @@ void main()
 	cout << "Delete  " << t.Delete(2) << endl;
 	t.PrintTable();*/
 
-	/*TSortTable  <int,int> t1(11);
-	t1.InitSortTable();
-	t1.PrintTable();*/
+	TSortTable  <int,int> t1(100);
+	TRecord <int, int>rec;
+	rec.key = 5;
+	//t1.InitSortTable();
+	t1.Fill("file.txt");
+	t1.PrintTable();
+	t1.Delete(rec.key);
+	t1.PrintTable();
 	/*TRecord <int, int> a, b;
 	a.key = 1;
 	a.val = 21;
@@ -37,9 +42,9 @@ void main()
 	TSortTable <int, int> a(c);
 	a.QuickSort(0,9);
 	a.PrintTable();*/
-	THashTable <int, int> t(100);
+	/*THashTable <int, int> t(100);
 	t.InitHashTable();
-	t.PrintTable();
+	t.PrintTable();*/
 
 	system("pause");
 }
