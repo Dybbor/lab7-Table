@@ -18,6 +18,7 @@ public:
 	void GoNext() { curr++; }
 	bool IsEnd() { return curr == DataCount; };
 	void PrintTable();
+	int DCount() { return DataCount; }
 };
 
 template <class TKey, class TVal>
@@ -50,7 +51,6 @@ TArrayTable <TKey, TVal>::TArrayTable(const TArrayTable <TKey, TVal> &t)
 template <class TKey, class TVal>
 void TArrayTable <TKey, TVal>::PrintTable()
 {
-	cout << "Table" << endl;
 	cout << setw(5) << "Key" << setw(15) << "Val" << endl;
 	int i =0 ;
 	for (Reset(); !IsEnd(); GoNext())

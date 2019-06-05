@@ -22,7 +22,6 @@ public:
 	bool Find(TKey key);
 	bool Insert(TRecord <TKey, TVal> rec);
 	bool Delete(TKey key);
-	void InitHashTable();
 	void  PrintTable();
 };
 
@@ -105,27 +104,26 @@ bool THashTable  <TKey, TVal> ::Insert(TRecord <TKey, TVal> rec)
 template <class TKey,class TVal>
 bool THashTable <TKey, TVal> ::Delete(TKey key) 
 {
-	if (IsEmpty() || Find(key))
+	/*if (IsEmpty() || Find(key))
 		return false;
 	else
 	{
 		arr[curr].key = -1;
 		DataCount--;
 		return true;
+	}*/
+
+	if (!IsEmpty() && Find(key))
+	{
+		arr[curr].key = -1;
+		DataCount--;
+		return true;
 	}
+	else
+		return false;
+
 }	
 
-template <class TKey, class TVal>
-void THashTable<TKey, TVal>::InitHashTable()
-{
-	TRecord  <int, int> rec;
-	for (int i = 0; i < 50; i++)
-	{
-		rec.key = rand() % 100;
-		rec.val = rec.key ;
-		Insert(rec);
-	}
-}
 
 template <class TKey,class TVal>
 void THashTable <TKey, TVal> ::PrintTable() 

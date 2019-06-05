@@ -9,7 +9,7 @@ public:
 	bool Find(TKey key);
 	bool Insert(TRecord  <TKey,TVal> rec);
 	bool Delete(TKey key);
-	void InitScanTable();
+//	void InitScanTable();
 	void QuickSort(int left,int right);
 };
 
@@ -54,19 +54,19 @@ bool TScanTable <TKey, TVal>::Delete(TKey key)
 	else
 		return false;
 }
-template <class TKey,class TVal>
-void TScanTable<TKey, TVal>::InitScanTable()
-{
-	TRecord <int, int> rec[10];
-	bool table[10] = { false };
-	for (int i = 0; i < 10; i++)
-	{
-		while (table[rec[i].key = rand() % 10]);
-		table[rec[i].key] = true;
-		rec[i].val = rec[i].key * 10;
-		Insert(rec[i]);
-	}
-}
+//template <class TKey,class TVal>
+//void TScanTable<TKey, TVal>::InitScanTable()
+//{
+//	TRecord <int, int> rec[10];
+//	bool table[10] = { false };
+//	for (int i = 0; i < 10; i++)
+//	{
+//		while (table[rec[i].key = rand() % 10]);
+//		table[rec[i].key] = true;
+//		rec[i].val = rec[i].key * 10;
+//		Insert(rec[i]);
+//	}
+//}
 template <class TKey,class TVal>
 void TScanTable  <TKey, TVal> ::QuickSort(int left,int right) 
 {

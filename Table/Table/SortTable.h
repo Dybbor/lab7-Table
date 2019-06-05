@@ -11,8 +11,7 @@ class TSortTable :public TArrayTable <TKey,TVal>
 		bool Find(TKey key);
 		bool Insert(TRecord <TKey, TVal> rec);
 		bool Delete(TKey key);
-		void InitSortTable();
-		void Fill(char *s);
+		//void InitSortTable();
 };
 template <class TKey,class TVal>
 TSortTable <TKey, TVal>::TSortTable(TScanTable <TKey, TVal> &t) :TArrayTable<TKey, TVal>(t)
@@ -102,7 +101,7 @@ bool TSortTable <TKey, TVal>::Insert(TRecord <TKey,TVal>rec)
 template <class TKey,class TVal>
 bool TSortTable <TKey, TVal>::Delete(TKey key)
 {
-	if (!Find(key) || !IsEmpty())
+	if (Find(key) && !IsEmpty())
 	{
 		for (int i = curr; i < DataCount; i++)
 		{
@@ -115,34 +114,34 @@ bool TSortTable <TKey, TVal>::Delete(TKey key)
 	else
 		return false;
 }
-template <class TKey, class TVal>
-void TSortTable<TKey, TVal>::InitSortTable()
-{
-	/*TRecord <int, int> rec[15];
-	bool table[15] = { false };
-	for (int i = 0; i < 15; i++)
-	{
-		while (table[rec[i].key = rand() % 10]);
-		table[rec[i].key] = true;
-		rec[i].val = rec[i].key * 10;
-		Insert(rec[i]);
-	}*/
-	TRecord <int, int>rec;
-	for (int i = 0; i < 23; i++) 
-	{
-		rec.key = rand()%1000;
-		rec.val = rec.key * 10;
-		Insert(rec);
-	}
-}
+//template <class TKey, class TVal>
+//void TSortTable<TKey, TVal>::InitSortTable()
+//{
+//	/*TRecord <int, int> rec[15];
+//	bool table[15] = { false };
+//	for (int i = 0; i < 15; i++)
+//	{
+//		while (table[rec[i].key = rand() % 10]);
+//		table[rec[i].key] = true;
+//		rec[i].val = rec[i].key * 10;
+//		Insert(rec[i]);
+//	}*/
+//	TRecord <int, int>rec;
+//	for (int i = 0; i < 23; i++) 
+//	{
+//		rec.key = rand()%1000;
+//		rec.val = rec.key * 10;
+//		Insert(rec);
+//	}
+//}
 
-template <class TKey, class TVal>
-void TSortTable<TKey, TVal>::Fill(char *s) {
-	ifstream f(s);
-	TRecord<TKey, TVal> tmp1;
-	while (!f.eof()) {
-		f >> tmp1.key >> tmp1.val;
-		Insert(tmp1);
-	}
-
-}
+//template <class TKey, class TVal>
+//void TSortTable<TKey, TVal>::Fill(char *s) {
+//	ifstream f(s);
+//	TRecord<TKey, TVal> tmp1;
+//	while (!f.eof()) {
+//		f >> tmp1.key >> tmp1.val;
+//		Insert(tmp1);
+//	}
+//
+//}
