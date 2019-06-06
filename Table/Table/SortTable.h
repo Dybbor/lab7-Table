@@ -77,7 +77,7 @@ bool TSortTable <TKey, TVal>::Find(TKey key)
 			else if (arr[s].key > key)
 				k = s - 1;
 			else
-				n = n + 1;
+				n = s + 1;
 		}
 		curr = n;
 		return false;

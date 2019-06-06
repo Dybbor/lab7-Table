@@ -3,6 +3,27 @@
 #include "SortTable.h"
 #include "THashTable.h"
 using namespace std; 
+//int Fi(int *mas,int key) {
+//	int n = 0, s;
+//	int k = 49;
+//	int ef = 0;
+//	int i = 0;
+//	while (n <= k)
+//	{
+//		s = (n + k) / 2;
+//		if (mas[i] == key)
+//		{
+//			curr = s;
+//			return true;
+//		}
+//		else if (arr[s].key > key)
+//			k = s - 1;
+//		else
+//			n = s + 1;
+//	}
+//	curr = n;
+//	return false;
+//}
 void main() 
 {
 	setlocale(LC_ALL, "Russian");
@@ -14,7 +35,10 @@ void main()
 	tsort.Fill("file.txt");
 	tscan.Fill("file.txt");
 	thash.Fill("file.txt");
-	tsort.PrintTable();
+	cout << "Insert ScanTable  " << tscan.Eff << endl;
+	cout << "Insert SortTable  " << tsort.Eff << endl;
+	cout << "Insert	HashTable  " << thash.Eff << endl;
+	tscan.PrintTable();
 	while (n != 0)
 	{
 		cout << "1 - Вставка\n2 - Поиск\n3 - Удаление\n0 - Выход" << endl;
@@ -71,7 +95,9 @@ void main()
 
 		}
 	}
-
+	/*int mas[50];
+	for (int i = 0; i < 50; i++)
+		mas[i] = i;*/
 	system("pause");
 }
 
