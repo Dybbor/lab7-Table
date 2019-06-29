@@ -1,32 +1,40 @@
 #pragma once
 #include "Record.h"
 #include "Table.h"
+#include <iomanip>
 template<class TKey, class TVal>
 class TArrayTable : public TTable <TKey,TVal>
 {
+public:
 	TRecord <TKey, TVal> *arr;
 	int MaxSize;
 	int curr;
-public:
 	TArrayTable(int _MaxSize);
 	TArrayTable(const TArrayTable <TKey, TVal> &t);
 	~TArrayTable();
-	virtual bool IsFull() { return DataCount == MaxSize; }
-	virtual bool IsEmpty() { return DataCount == 0; }
-	virtual void Reset() { curr = 0; }
-	virtual void GeNext() { curr++; }
-	virtual void IsEnd() { return curr == DataCount; }
+	bool IsFull() { return DataCount == MaxSize; }
+	bool IsEmpty() { return DataCount == 0; }
+	void Reset() { curr = 0; }
+	void GoNext() { curr++; }
+	bool IsEnd() { return curr == DataCount; };
+	void PrintTable();
+	int DCount() { return DataCount; }
 };
 
 template <class TKey, class TVal>
 TArrayTable<TKey, TVal>::TArrayTable(int _MaxSize)
 {
-	MaxSize = _MaxSize;
-	arr = new TRecord[MaxSize];
-	curr = 0;
+	if (_MaxSize <= 0)
+		throw - 1;
+	else
+	{
+		MaxSize = _MaxSize;
+		arr = new TRecord<TKey, TVal>[MaxSize];
+		curr = -1;
+	}
 }
 template <class TKey, class TVal>
-TArrayTable <TKey, TVal> ::~TArrayTable()
+TArrayTable <TKey, TVal> ::~TArrayTable() 
 {
 	delete[] arr;
 }
@@ -34,9 +42,19 @@ template <class TKey, class TVal>
 TArrayTable <TKey, TVal>::TArrayTable(const TArrayTable <TKey, TVal> &t)
 {
 	MaxSize = t.MaxSize;
-	arr = new TRecord[MaxSize];
+	arr = new TRecord<TKey,TVal>[MaxSize];
 	curr = t.curr;
 	DataCount = t.DataCount;
 	for (int i = 0; i < DataCount; i++)
 		arr[i] = t.arr[i];
+}
+template <class TKey, class TVal>
+void TArrayTable <TKey, TVal>::PrintTable()
+{
+	cout << setw(5) << "Key" << setw(15) << "Val" << endl;
+	int i =0 ;
+	for (Reset(); !IsEnd(); GoNext())
+	{
+		cout << setw(5) << arr[curr].key << setw(15) << arr[curr].val << endl;
+	}
 }
